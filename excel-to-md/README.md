@@ -1,3 +1,3 @@
-# Excel (.xlsx etc) to Markdown (.md)
+# Excel to Markdown
 
-Simple and rude code to convert Excel tables into Markdown tables.
+Simple and rude code to convert Excel (.xlsx and other files) tables into Markdown (.md) tables.
