@@ -62,7 +62,7 @@ class Converter:
 
 # === MAIN ===
 """
-Here is example to convert the VamoDale 1.18.2 mod list from .xlsx to .md
+Here is example to convert the Technical Enhanced 1.18.2 mod list from .xlsx to .md
 
 Note that the first five rows aren't necessary, as well as specific properties like the jar file name
 So pandas arguments are parsed to not generate these infos on the final .md table
