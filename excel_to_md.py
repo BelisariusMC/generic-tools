@@ -4,7 +4,7 @@
 # Created By  : BelisariusMC
 # Created Date: 11 jun. 2022
 # Version     : 1.0.0
-# License     : MIT License
+# License     : BSD 3-Clause "New" or "Revised" License
 # ==============================================================================
 # Libs
 # Tabulate is also required for pandas functions

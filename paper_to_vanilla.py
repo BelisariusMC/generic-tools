@@ -4,7 +4,7 @@
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
 # Version     : 1.0.0
-# License     : MIT License
+# License     : BSD 3-Clause "New" or "Revised" License
 # ==============================================================================
 # Built-in/Generic Imports
 import os

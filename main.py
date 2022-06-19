@@ -4,9 +4,9 @@
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
 # Version     : 1.0.0
-# License     : MIT License
+# License     : BSD 3-Clause "New" or "Revised" License
 # ------------------------------------------------------------------------------
-# Generic tools to help development and maintenance of Minecraft mod, modpack
+# Generic tools to help development and maintenance of Minecraft mods, modpacks
 # and servers. Included features:
 # > Excel files to Markdown (.md) tables converter
 # > Paper world format to Vanilla format (and vice-versa)
@@ -16,7 +16,7 @@
 __author__ = "BelisariusMC"
 __copyright__ = "Copyright 2022, BelisariusMC"
 __credits__ = ["BelisariusMC"]
-__license__ = "MIT"
+__license__ = "BSD 3-Clause \"New\" or \"Revised\" License"
 __version__ = "1.0.0"
 __maintainer__ = "BelisariusMC"
 __email__ = "belisariusmc@gmail.com"
