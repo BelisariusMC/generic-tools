@@ -3,7 +3,7 @@
 # ==============================================================================
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
-# Version     : 1.0.0
+# Version     : 1.0.1
 # License     : BSD 3-Clause "New" or "Revised" License
 # ------------------------------------------------------------------------------
 # Generic tools to help development and maintenance of Minecraft mods, modpacks
@@ -22,8 +22,6 @@ __maintainer__ = "BelisariusMC"
 __email__ = "belisariusmc@gmail.com"
 __status__ = "Development"
 # ==============================================================================
-# Built-in/Generic Imports
-# Libs
 # Own modules
 from excel_to_md import *
 from paper_to_vanilla import *
@@ -38,6 +36,7 @@ print('Maintainer: ' + __maintainer__)
 print('Email: ' + __email__)
 print('Status: ' + __status__)
 print('# ' + '=' * 78)
+print("\n")
 # ------------------------------------------------------------------------------
 """
 Example to convert the Technical Enhanced 1.18.2 mod list from .xlsx to .md

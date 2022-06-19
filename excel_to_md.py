@@ -3,20 +3,16 @@
 # ==============================================================================
 # Created By  : BelisariusMC
 # Created Date: 11 jun. 2022
-# Version     : 1.0.0
+# Version     : 1.0.1
 # License     : BSD 3-Clause "New" or "Revised" License
 # ==============================================================================
 # Libs
-# Tabulate is also required for pandas functions
-import pandas as pd
 from openpyxl import load_workbook
+import pandas as pd
 # ==============================================================================
 
 
 class Excel_to_md:
-    """
-
-    """
 
     def __init__(self, file):
         # Input
