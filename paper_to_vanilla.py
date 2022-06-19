@@ -9,6 +9,7 @@
 # Own modules
 from dir_handler import *
 # ==============================================================================
+# TODO: Add comments
 
 
 class Paper_to_vanilla:

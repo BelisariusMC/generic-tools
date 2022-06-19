@@ -38,6 +38,9 @@ print('Status: ' + __status__)
 print('# ' + '=' * 78)
 print("\n")
 # ------------------------------------------------------------------------------
+# TODO: Export system for modpack development from an usable instance
+# TODO: modpack conversion (Packwiz, MultiMC, CurseForge, Modrinth)
+# ------------------------------------------------------------------------------
 """
 Example to convert the Technical Enhanced 1.18.2 mod list from .xlsx to .md
 

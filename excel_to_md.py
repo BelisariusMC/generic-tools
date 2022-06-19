@@ -10,6 +10,8 @@
 from openpyxl import load_workbook
 import pandas as pd
 # ==============================================================================
+# TODO: Add comments
+# TODO: Use dir_handler to locate the files
 
 
 class Excel_to_md:
