@@ -52,9 +52,9 @@ excel_to_md('D:/Projects/generic-tools (minecraft)/example_excel_to_md/MODLIST.x
 # ------------------------------------------------------------------------------
 """ Example to convert a Paper world into a Vanilla world """
 
-root_path = "/example_paper_to_vanilla/"
-world_paper_path = "world_paper"
-world_vanilla_path = "world_vanilla"
+root_path = "D:/Projects/generic-tools (minecraft)/example_paper_to_vanilla/"
+world_paper_path = root_path + "world_paper"
+world_vanilla_path = root_path + "world_vanilla"
 
-paper_to_vanilla(root_path, world_paper_path, world_vanilla_path).paper_to_vanilla()
+paper_to_vanilla(world_paper_path, world_vanilla_path).paper_to_vanilla()
 # ==============================================================================

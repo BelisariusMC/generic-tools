@@ -52,4 +52,5 @@ class dir_handler:
         dir_handler.copy_file(path, os.path.dirname(path) + '/' + name,
                               path, os.path.dirname(path) + '/' + name)
         dir_handler.remove_file(path, path)
+
 # ==============================================================================

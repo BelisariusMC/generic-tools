@@ -87,5 +87,4 @@ class excel_to_md:
 
         print("Converted " + self.file_name + " from " + self.file_type + " to Markdown")
 
-
 # ==============================================================================
