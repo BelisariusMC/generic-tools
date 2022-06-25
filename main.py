@@ -35,7 +35,6 @@ print('Maintainer: ' + __maintainer__)
 print('Email: ' + __email__)
 print('Status: ' + __status__)
 print('# ' + '=' * 78)
-print("\n")
 # ------------------------------------------------------------------------------
 # TODO: Export system for modpack development from an usable instance
 # TODO: modpack conversion (Packwiz, MultiMC, CurseForge, Modrinth)
@@ -48,9 +47,8 @@ like the jar file name. So pandas arguments are parsed to not generate these
 infos on the final .md table.
 """
 
-# Excel_to_md('MODLIST.xlsx').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
-
-Excel_to_md('MODLIST.xlsx', path='D:/Projects/generic-tools (minecraft)/example_excel_to_md/').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
+excel_to_md('D:/Projects/generic-tools (minecraft)/example_excel_to_md/MODLIST.xlsx').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
+# excel_to_md('MODLIST.xlsx').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
 # ------------------------------------------------------------------------------
 """ Example to convert a Paper world into a Vanilla world """
 
@@ -58,5 +56,5 @@ root_path = "/example_paper_to_vanilla/"
 world_paper_path = "world_paper"
 world_vanilla_path = "world_vanilla"
 
-# Paper_to_vanilla(root_path, world_paper_path, world_vanilla_path).paper_to_vanilla()
+paper_to_vanilla(root_path, world_paper_path, world_vanilla_path).paper_to_vanilla()
 # ==============================================================================

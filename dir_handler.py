@@ -10,11 +10,10 @@ import os
 import shutil
 from distutils import dir_util
 # ==============================================================================
-# TODO: Add comments
-# TODO: Add rename function
+# TODO: Optimize the rename_file function
 
 
-class Dir_handler:
+class dir_handler:
 
     @staticmethod
     def remove_dir(path, description):
@@ -48,10 +47,9 @@ class Dir_handler:
         else:
             print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
 
-    # TODO: Optimize the rename_file function
     @staticmethod
     def rename_file(path, name):
-        Dir_handler.copy_file(path, os.path.dirname(path) + '/' + name,
+        dir_handler.copy_file(path, os.path.dirname(path) + '/' + name,
                               path, os.path.dirname(path) + '/' + name)
-        Dir_handler.remove_file(path, path)
+        dir_handler.remove_file(path, path)
 # ==============================================================================

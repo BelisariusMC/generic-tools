@@ -10,54 +10,45 @@ from openpyxl import load_workbook
 import pandas as pd
 from dir_handler import *
 # ==============================================================================
-# TODO: Add comments
-# TODO: Change the temp file name to 'temp'
 # TODO: Optimize to not use a temp file
 
 
-class Excel_to_md:
+class excel_to_md:
 
-    def __init__(self, file, path=None, saveOriginalPath=True):
+    def __init__(self, file):
         # Input
-        self.file = file
-        self.file_path = path
-        self.saveOriginalPath = saveOriginalPath
+        self.file = os.path.basename(file)
+        self.file_path = os.path.dirname(file) + '/'
 
         # Processed
-        self.file_name = file.split('.', 1)[0]
-        self.file_type = '.' + file.split('.', 1)[1]
+        self.file_name = self.file.split('.', 1)[0]
+        self.file_type = '.' + self.file.split('.', 1)[1]
+        self.local_path = os.path.dirname(os.path.abspath(__file__)) + '/'
         self.file_converted = self.file
         self.file_temp = self.file
 
     def create_temp_file(self):
-        # TODO: if file contains a path
-
         self.file_temp = 'temp' + self.file_type
 
-        if self.file_path is not None:
-            Dir_handler.copy_file(self.file_path + self.file, os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp,
-                                  self.file_path + self.file, os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp)
+        if self.file_path != '':
+            dir_handler.copy_file(self.file_path + self.file, self.local_path + self.file_temp,
+                                  self.file_path + self.file, self.local_path + self.file_temp)
         else:
-            Dir_handler.copy_file(os.path.dirname(os.path.abspath(__file__)) + self.file, os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp,
-                                  os.path.dirname(os.path.abspath(__file__)) + self.file, os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp)
+            dir_handler.copy_file(self.local_path + self.file, self.local_path + self.file_temp,
+                                  self.local_path + self.file, self.local_path + self.file_temp)
 
     def save_original_path(self, _file):
-        if self.saveOriginalPath:
-            Dir_handler.copy_file(os.path.dirname(os.path.abspath(__file__)) + '/' + _file, self.file_path,
-                                  os.path.dirname(os.path.abspath(__file__)) + '/' + _file, self.file_path)
-            Dir_handler.remove_file(os.path.dirname(os.path.abspath(__file__)) + '/' + _file,
-                                    os.path.dirname(os.path.abspath(__file__)) + '/' + _file)
+        dir_handler.copy_file(self.local_path + _file, self.file_path,
+                              self.local_path + _file, self.file_path)
+        dir_handler.remove_file(self.local_path + _file,
+                                self.local_path + _file)
 
     def hyperlink(self, saveLocal=False):
-        """
-        :return: Excel table with hyperlink cells converted into Markdown format
-        """
 
         self.create_temp_file()
         wb = load_workbook(self.file_temp)
         ws = wb.active
 
-        # Iterate thru all cells and if hyperlink found attempt modification of cell
         for row in ws.rows:
             for cell in row:
                 try:
@@ -70,8 +61,8 @@ class Excel_to_md:
         wb.save(self.file_converted)
 
         if not saveLocal:
-            Dir_handler.remove_file(os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp,
-                                    os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp)
+            dir_handler.remove_file(self.local_path + self.file_temp,
+                                    self.local_path + self.file_temp)
             self.save_original_path(self.file_converted)
 
         print("Converted " + self.file_name + " hyperlink cells to Markdown format")
@@ -87,10 +78,10 @@ class Excel_to_md:
         df = df.fillna('')
         df.to_markdown(buf=self.file_name + '.md', index=False, headers=md_header)
 
-        Dir_handler.remove_file(os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp,
-                                os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_temp)
-        Dir_handler.remove_file(os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_converted,
-                                os.path.dirname(os.path.abspath(__file__)) + '/' + self.file_converted)
+        dir_handler.remove_file(self.local_path + self.file_temp,
+                                self.local_path + self.file_temp)
+        dir_handler.remove_file(self.local_path + self.file_converted,
+                                self.local_path + self.file_converted)
         if not saveLocal:
             self.save_original_path(self.file_name + '.md')
 
