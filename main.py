@@ -3,7 +3,7 @@
 # ==============================================================================
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
-# Version     : 1.0.1
+# Version     : 1.0.2
 # License     : BSD 3-Clause "New" or "Revised" License
 # ------------------------------------------------------------------------------
 # Generic tools to help development and maintenance of Minecraft mods, modpacks
@@ -22,7 +22,6 @@ __maintainer__ = "BelisariusMC"
 __email__ = "belisariusmc@gmail.com"
 __status__ = "Development"
 # ==============================================================================
-# Own modules
 from excel_to_md import *
 from paper_to_vanilla import *
 # ==============================================================================
@@ -49,13 +48,15 @@ like the jar file name. So pandas arguments are parsed to not generate these
 infos on the final .md table.
 """
 
-Excel_to_md('MODLIST.xlsx').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
+# Excel_to_md('MODLIST.xlsx').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
+
+Excel_to_md('MODLIST.xlsx', path='D:/Projects/generic-tools (minecraft)/example_excel_to_md/').to_markdown(skiprows=5, header=None, usecols=range(0, 6))
 # ------------------------------------------------------------------------------
 """ Example to convert a Paper world into a Vanilla world """
 
-root_path = "D:/Projects/generic-tools (minecraft)/paper_to_vanilla_example/"
+root_path = "/example_paper_to_vanilla/"
 world_paper_path = "world_paper"
 world_vanilla_path = "world_vanilla"
 
-Paper_to_vanilla(root_path, world_paper_path, world_vanilla_path).paper_to_vanilla()
+# Paper_to_vanilla(root_path, world_paper_path, world_vanilla_path).paper_to_vanilla()
 # ==============================================================================

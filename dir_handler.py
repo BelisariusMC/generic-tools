@@ -3,15 +3,15 @@
 # ==============================================================================
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
-# Version     : 1.0.1
+# Version     : 1.0.2
 # License     : BSD 3-Clause "New" or "Revised" License
 # ==============================================================================
-# Built-in/Generic Imports
 import os
 import shutil
 from distutils import dir_util
 # ==============================================================================
 # TODO: Add comments
+# TODO: Add rename function
 
 
 class Dir_handler:
@@ -48,5 +48,10 @@ class Dir_handler:
         else:
             print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
 
-
+    # TODO: Optimize the rename_file function
+    @staticmethod
+    def rename_file(path, name):
+        Dir_handler.copy_file(path, os.path.dirname(path) + '/' + name,
+                              path, os.path.dirname(path) + '/' + name)
+        Dir_handler.remove_file(path, path)
 # ==============================================================================
