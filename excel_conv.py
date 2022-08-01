@@ -33,17 +33,13 @@ class ExcelMarkdown:
         self.file_temp = 'temp' + self.file_type
 
         if self.file_path != '':
-            DirHandler.copy_file(self.file_path + self.file, self.local_path + self.file_temp,
-                                 self.file_path + self.file, self.local_path + self.file_temp)
+            DirHandler.copy_file(self.file_path + self.file, self.local_path + self.file_temp)
         else:
-            DirHandler.copy_file(self.local_path + self.file, self.local_path + self.file_temp,
-                                 self.file_path + self.file, self.local_path + self.file_temp)
+            DirHandler.copy_file(self.local_path + self.file, self.local_path + self.file_temp)
 
     def save_original_path(self, _file):
-        DirHandler.copy_file(self.local_path + _file, self.file_path,
-                             self.local_path + _file, self.file_path)
-        DirHandler.remove_file(self.local_path + _file,
-                               self.local_path + _file)
+        DirHandler.copy_file(self.local_path + _file, self.file_path)
+        DirHandler.remove_file(self.local_path + _file)
 
     def hyperlink(self, saveLocal=False):
 
@@ -63,8 +59,7 @@ class ExcelMarkdown:
         wb.save(self.file_converted)
 
         if not saveLocal:
-            DirHandler.remove_file(self.local_path + self.file_temp,
-                                   self.local_path + self.file_temp)
+            DirHandler.remove_file(self.local_path + self.file_temp)
             self.save_original_path(self.file_converted)
 
         print("Converted " + self.file_name + " hyperlink cells to Markdown format")
@@ -80,10 +75,8 @@ class ExcelMarkdown:
         df = df.fillna('')
         df.to_markdown(buf=self.file_name + '.md', index=False, headers=md_header)
 
-        DirHandler.remove_file(self.local_path + self.file_temp,
-                               self.local_path + self.file_temp)
-        DirHandler.remove_file(self.local_path + self.file_converted,
-                               self.local_path + self.file_converted)
+        DirHandler.remove_file(self.local_path + self.file_temp)
+        DirHandler.remove_file(self.local_path + self.file_converted)
         if not saveLocal:
             self.save_original_path(self.file_name + '.md')
 

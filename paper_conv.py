@@ -25,8 +25,8 @@ class PaperWorld:
         DirHandler.copy_dir(self.world_paper_path + "_the_end/DIM1",
                             self.world_vanilla_path + "/DIM1",
                             "Paper world_the_end", "Vanilla world")
-        DirHandler.remove_file(self.world_vanilla_path + "/paper-world.yml", "Paper stuff")
-        DirHandler.remove_dir(self.world_vanilla_path + '/datapacks/bukkit', "Paper stuff")
+        DirHandler.remove_file(self.world_vanilla_path + "/paper-world.yml", "Paper world config")
+        DirHandler.remove_dir(self.world_vanilla_path + '/datapacks/bukkit', "Bukkit datapack")
 
         print("Converted Paper worlds " + self.world_paper_path + ", " + self.world_paper_path + "_nether, " +
               self.world_paper_path + "_the_end" + " to Vanilla world " + self.world_vanilla_path)
