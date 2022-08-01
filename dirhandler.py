@@ -10,7 +10,6 @@ import os
 import shutil
 from distutils import dir_util
 # ==============================================================================
-# TODO: Optimize the rename_file function
 
 
 class DirHandler:
@@ -52,13 +51,14 @@ class DirHandler:
             if debug is True:
                 print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
 
+    # TODO: Optimize the rename_file function
     @staticmethod
-    def rename_file(path, name, description=None, debug=False):
+    def rename(path, name, description=None, debug=False):
         if description is None:
             description = path + " to " + name
 
-        DirHandler.copy_file(path, os.path.dirname(path) + '/' + name, debug=debug)
-        DirHandler.remove_file(path, debug=debug)
+        DirHandler.copy(path, os.path.dirname(path) + '/' + name, debug=debug)
+        DirHandler.remove(path, debug=debug)
         if debug is True:
             print("Renamed " + description)
 
