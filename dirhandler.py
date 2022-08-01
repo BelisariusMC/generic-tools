@@ -47,9 +47,8 @@ class DirHandler:
             shutil.copy2(from_path, to_path)
             if debug is True:
                 print("Copied file " + from_desc + " to " + to_desc)
-        else:
-            if debug is True:
-                print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
+        elif debug is True:
+            print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
 
     # TODO: Optimize the rename_file function
     @staticmethod
@@ -61,5 +60,20 @@ class DirHandler:
         DirHandler.remove(path, debug=debug)
         if debug is True:
             print("Renamed " + description)
+
+    @staticmethod
+    def create_temp(path, name=".temp", description=None, debug=False):
+        if debug is True and description is None:
+            description = path
+
+        local_path = os.path.dirname(path)
+
+        if os.path.isdir(path):
+            DirHandler.copy(path, local_path + "/" + name, debug=debug)
+        elif os.path.isfile(path):
+            temp_file = name + os.path.splitext(path)[1]
+            DirHandler.copy(path, local_path + "/" + temp_file, debug=debug)
+        elif debug is True:
+            print("Skipped " + description + ", didn't exist")
 
     # ==============================================================================
