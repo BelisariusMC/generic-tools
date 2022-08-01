@@ -3,7 +3,7 @@
 # ==============================================================================
 # Created By  : BelisariusMC
 # Created Date: 19 jun. 2022
-# Version     : 1.0.2
+# Version     : 1.0.3
 # License     : BSD 3-Clause "New" or "Revised" License
 # ==============================================================================
 import os
@@ -13,7 +13,7 @@ from distutils import dir_util
 # TODO: Optimize the rename_file function
 
 
-class dir_handler:
+class DirHandler:
 
     @staticmethod
     def remove_dir(path, description):
@@ -49,8 +49,8 @@ class dir_handler:
 
     @staticmethod
     def rename_file(path, name):
-        dir_handler.copy_file(path, os.path.dirname(path) + '/' + name,
-                              path, os.path.dirname(path) + '/' + name)
-        dir_handler.remove_file(path, path)
+        DirHandler.copy_file(path, os.path.dirname(path) + '/' + name,
+                             path, os.path.dirname(path) + '/' + name)
+        DirHandler.remove_file(path, path)
 
 # ==============================================================================
