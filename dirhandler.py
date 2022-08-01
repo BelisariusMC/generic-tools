@@ -16,33 +16,24 @@ from distutils import dir_util
 class DirHandler:
 
     @staticmethod
-    def remove_dir(path, description=None, debug=False):
+    def remove(path, description=None, debug=False):
         if debug is True and description is None:
             description = path
 
         if os.path.isdir(path):
             dir_util.remove_tree(path)
             if debug is True:
-                print("Deleted " + description)
-        else:
-            if debug is True:
-                print("Skipped " + description + " deletion, didn't exist")
-
-    @staticmethod
-    def remove_file(path, description=None, debug=False):
-        if debug is True and description is None:
-            description = path
-
-        if os.path.isfile(path):
+                print("Deleted directory " + description)
+        elif os.path.isfile(path):
             os.remove(path)
             if debug is True:
-                print("Deleted " + description)
+                print("Deleted file " + description)
         else:
             if debug is True:
                 print("Skipped " + description + " deletion, didn't exist")
 
     @staticmethod
-    def copy_dir(from_path, to_path, from_desc=None, to_desc=None, debug=False):
+    def copy(from_path, to_path, from_desc=None, to_desc=None, debug=False):
         if debug is True:
             if from_desc is None:
                 from_desc = from_path
@@ -52,23 +43,11 @@ class DirHandler:
         if os.path.isdir(from_path):
             dir_util.copy_tree(from_path, to_path)
             if debug is True:
-                print("Copied " + from_desc + " to " + to_desc)
-        else:
-            if debug is True:
-                print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
-
-    @staticmethod
-    def copy_file(from_path, to_path, from_desc=None, to_desc=None, debug=False):
-        if debug is True:
-            if from_desc is None:
-                from_desc = from_path
-            if to_desc is None:
-                to_desc = to_path
-
-        if os.path.isfile(from_path):
+                print("Copied directory " + from_desc + " to " + to_desc)
+        elif os.path.isfile(from_path):
             shutil.copy2(from_path, to_path)
             if debug is True:
-                print("Copied " + from_desc + " to " + to_desc)
+                print("Copied file " + from_desc + " to " + to_desc)
         else:
             if debug is True:
                 print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
