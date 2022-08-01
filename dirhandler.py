@@ -51,6 +51,12 @@ class DirHandler:
             print("Skipped " + from_desc + " copying to " + to_desc + ", didn't exist")
 
     @staticmethod
+    def move(from_path, to_path, from_desc=None, to_desc=None, debug=False):
+        shutil.move(from_path, to_path)
+        if debug is True:
+            print("Moved " + from_desc + " to " + to_desc)
+
+    @staticmethod
     def rename(path, name, description=None, debug=False):
         if description is None:
             description = "Renamed " + path + " to " + name
