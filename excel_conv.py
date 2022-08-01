@@ -12,73 +12,61 @@ import pandas as pd
 
 from dirhandler import DirHandler
 # ==============================================================================
-# TODO: Optimize to not use a temp file
 
 
 class ExcelMarkdown:
 
-    def __init__(self, file):
+    def __init__(self, file, out_path=None):
         # Input
         self.file = os.path.basename(file)
-        self.file_path = os.path.dirname(file) + '/'
+        self.file_path = os.path.dirname(file) + "/"
+        self.out_path = out_path
 
         # Processed
-        self.file_name = self.file.split('.', 1)[0]
-        self.file_type = '.' + self.file.split('.', 1)[1]
-        self.local_path = os.path.dirname(os.path.abspath(__file__)) + '/'
+        self.file_name = os.path.splitext(os.path.basename(file))[0]
+        self.file_type = os.path.splitext(file)[1]
+        self.local_path = os.path.dirname(file) + "/"
         self.file_converted = self.file
-        self.file_temp = self.file
-
-    def create_temp_file(self):
-        self.file_temp = 'temp' + self.file_type
-
-        if self.file_path != '':
-            DirHandler.copy_file(self.file_path + self.file, self.local_path + self.file_temp)
-        else:
-            DirHandler.copy_file(self.local_path + self.file, self.local_path + self.file_temp)
-
-    def save_original_path(self, _file):
-        DirHandler.copy_file(self.local_path + _file, self.file_path)
-        DirHandler.remove_file(self.local_path + _file)
 
     def hyperlink(self, saveLocal=False):
 
-        self.create_temp_file()
-        wb = load_workbook(self.file_temp)
+        wb = load_workbook(self.local_path + self.file)
         ws = wb.active
 
         for row in ws.rows:
             for cell in row:
                 try:
                     if len(cell.hyperlink.target) > 0:
-                        cell.value = "".join(['[', cell.value, '](', cell.hyperlink.target, ')'])
+                        cell.value = "".join(["[", cell.value, "](", cell.hyperlink.target, ")"])
                 except:
                     pass
 
-        self.file_converted = self.file_name + '_CONVERTED' + self.file_type
-        wb.save(self.file_converted)
+        self.file_converted = self.file_name + "_CONVERTED" + self.file_type
 
-        if not saveLocal:
-            DirHandler.remove_file(self.local_path + self.file_temp)
-            self.save_original_path(self.file_converted)
+        if self.out_path is None:
+            wb.save(self.local_path + self.file_converted)
+        else:
+            wb.save(self.out_path + "/" + self.file_converted)
+            if saveLocal:
+                DirHandler.copy(self.out_path + "/" + self.file_converted, self.local_path)
 
         print("Converted " + self.file_name + " hyperlink cells to Markdown format")
 
-    def to_markdown(self, convert_hyperlink=True, saveLocal=False, md_header="keys", **kwargs):
+    def to_markdown(self, convert_hyperlink=True, md_header="keys", **kwargs):
 
         if convert_hyperlink:
             self.hyperlink(saveLocal=True)
+            df = pd.read_excel(self.local_path + self.file_converted, sheet_name=0, **kwargs)
+            DirHandler.remove(self.local_path + self.file_converted)
         else:
-            self.create_temp_file()
+            df = pd.read_excel(self.local_path + self.file, sheet_name=0, **kwargs)
 
-        df = pd.read_excel(self.file_converted, sheet_name=0, **kwargs)
-        df = df.fillna('')
-        df.to_markdown(buf=self.file_name + '.md', index=False, headers=md_header)
+        df = df.fillna("")
 
-        DirHandler.remove_file(self.local_path + self.file_temp)
-        DirHandler.remove_file(self.local_path + self.file_converted)
-        if not saveLocal:
-            self.save_original_path(self.file_name + '.md')
+        if self.out_path is None:
+            df.to_markdown(buf=self.local_path + self.file_name + ".md", index=False, headers=md_header)
+        else:
+            df.to_markdown(buf=self.out_path + self.file_name + ".md", index=False, headers=md_header)
 
         print("Converted " + self.file_name + " from " + self.file_type + " to Markdown")
 
